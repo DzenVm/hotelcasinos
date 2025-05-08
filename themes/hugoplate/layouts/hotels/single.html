@@ -1,8 +1,8 @@
-{{/* layouts/hotels/single.html — full tile layout */}}
+{{/* layouts/hotels/single.html — tile layout, no theme-specific classes */}}
 
 {{ define "main" }}
 
-<!-- ─────────── HERO ─────────── -->
+<!-- ───────── HERO ───────── -->
 <section class="relative mt-navbar lg:mt-navbar">
   {{ with .Params.image }}
     <img src="{{ . | relURL }}" alt="{{ $.Title }}" class="w-full h-[70vh] object-cover">
@@ -17,72 +17,63 @@
   </div>
 </section>
 
-<!-- ─────────── TILE WRAPPER ─────────── -->
+<!-- ───────── TILE WRAPPER ───────── -->
 <section class="container mx-auto px-4 py-12 grid gap-10">
 
-  {{/* Casino */}}
+  {{/* helper макрос, щоб не повторювати класи */}}
+  {{- $tile := "bg-white dark:bg-neutral-800 rounded-2xl shadow-md p-6 md:p-8 space-y-4" -}}
+
   {{ with .Params.casino }}
-    <article class="card card-body bg-white dark:bg-darkmode-body space-y-4">
+    <article class="{{ $tile }}">
       <h2 class="text-xl font-semibold flex items-center gap-2">🎰 Casino Experience</h2>
       <div class="prose max-w-none">{{ . | markdownify }}</div>
     </article>
   {{ end }}
 
-  {{/* Atmosphere */}}
   {{ with .Params.atmosphere }}
-    <article class="card card-body bg-white dark:bg-darkmode-body space-y-4">
+    <article class="{{ $tile }}">
       <h2 class="text-xl font-semibold flex items-center gap-2">🏨 Hotel Atmosphere</h2>
       <div class="prose max-w-none">{{ . | markdownify }}</div>
     </article>
   {{ end }}
 
-  {{/* Rooms & Suites */}}
   {{ with .Params.rooms_suites }}
-    <article class="card card-body bg-white dark:bg-darkmode-body space-y-4">
+    <article class="{{ $tile }}">
       <h2 class="text-xl font-semibold">🛏️ Rooms & Suites</h2>
-      <ul class="list-disc pl-6 grid sm:grid-cols-2 gap-x-8">
-        {{ range . }}<li>{{ . }}</li>{{ end }}
-      </ul>
+      <ul class="list-disc pl-6 grid sm:grid-cols-2 gap-x-8">{{ range . }}<li>{{ . }}</li>{{ end }}</ul>
     </article>
   {{ end }}
 
-  {{/* Dining & Bars */}}
   {{ with .Params.dining }}
-    <article class="card card-body bg-white dark:bg-darkmode-body space-y-4">
+    <article class="{{ $tile }}">
       <h2 class="text-xl font-semibold">🍽️ Dining & Bars</h2>
       <div class="prose max-w-none">{{ . | markdownify }}</div>
     </article>
   {{ end }}
 
-  {{/* Wellness & Spa */}}
   {{ with .Params.wellness_spa }}
-    <article class="card card-body bg-white dark:bg-darkmode-body space-y-4">
+    <article class="{{ $tile }}">
       <h2 class="text-xl font-semibold">💆 Wellness & Spa</h2>
       <div class="prose max-w-none">{{ . | markdownify }}</div>
     </article>
   {{ end }}
 
-  {{/* Location Highlights */}}
   {{ with .Params.location_hits }}
-    <article class="card card-body bg-white dark:bg-darkmode-body space-y-4">
+    <article class="{{ $tile }}">
       <h2 class="text-xl font-semibold">📍 Location Highlights</h2>
-      <ul class="list-disc pl-6">
-        {{ range . }}<li>{{ . }}</li>{{ end }}
-      </ul>
+      <ul class="list-disc pl-6 space-y-1">{{ range . }}<li>{{ . }}</li>{{ end }}</ul>
     </article>
   {{ end }}
 
-  {{/* Meetings & Events */}}
   {{ with .Params.meetings }}
-    <article class="card card-body bg-white dark:bg-darkmode-body space-y-4">
+    <article class="{{ $tile }}">
       <h2 class="text-xl font-semibold">🏢 Meetings & Events</h2>
       <div class="prose max-w-none">{{ . | markdownify }}</div>
     </article>
   {{ end }}
 
-  {{/* Amenities */}}
   {{ with .Params.amenities }}
-    <article class="card card-body bg-white dark:bg-darkmode-body space-y-4">
+    <article class="{{ $tile }}">
       <h2 class="text-xl font-semibold flex items-center gap-2">🔧 Amenities</h2>
       <ul class="list-disc pl-6 grid sm:grid-cols-2 gap-x-8 gap-y-1">
         {{ range . }}<li>{{ . }}</li>{{ end }}
@@ -90,21 +81,19 @@
     </article>
   {{ end }}
 
-  {{/* Guest Reviews */}}
   {{ with first 1 .Params.reviews }}
-    <article class="card card-body bg-white dark:bg-darkmode-body space-y-4">
+    <article class="{{ $tile }}">
       <h2 class="text-xl font-semibold flex items-center gap-2">💬 Guest Reviews</h2>
       <blockquote class="border-l-4 border-yellow-400 pl-4 italic">{{ index . 0 }}</blockquote>
     </article>
   {{ end }}
 
-  {{/* FAQ */}}
   {{ with .Params.faq }}
-    <article class="card card-body bg-white dark:bg-darkmode-body space-y-4">
+    <article class="{{ $tile }}">
       <h2 class="text-xl font-semibold flex items-center gap-2">❓ Frequently Asked</h2>
       <div class="space-y-3">
         {{ range . }}
-          <details class="bg-gray-50 p-4 rounded-md">
+          <details class="bg-gray-50 dark:bg-neutral-700 p-4 rounded-md">
             <summary class="cursor-pointer font-medium">{{ .q }}</summary>
             <p class="mt-2">{{ .a }}</p>
           </details>
@@ -113,19 +102,17 @@
     </article>
   {{ end }}
 
-  {{/* TripAdvisor CTA */}}
   {{ with .Params.tripadvisor }}
     <div class="text-center">
       <a href="{{ . }}" target="_blank" rel="nofollow noopener"
-         class="btn btn-primary btn-sm">
+         class="inline-block bg-green-600 hover:bg-green-700 text-white font-semibold px-6 py-3 rounded-lg shadow transition">
         🔗 View on TripAdvisor
       </a>
     </div>
   {{ end }}
 
-  {{/* Gallery */}}
   {{ with .Params.gallery }}
-    <article class="card card-body bg-white dark:bg-darkmode-body space-y-6">
+    <article class="{{ $tile }}">
       <h2 class="text-xl font-semibold flex items-center gap-2">📸 Photo Gallery</h2>
       <div class="grid gap-6 sm:grid-cols-2">
         {{ range . }}
