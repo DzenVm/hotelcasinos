@@ -81,12 +81,15 @@
     </article>
   {{ end }}
 
-  {{ with first 1 .Params.reviews }}
+  {{ with .Params.reviews }}
+  {{ if gt (len .) 0 }}
     <article class="{{ $tile }}">
       <h2 class="text-xl font-semibold flex items-center gap-2">💬 Guest Reviews</h2>
       <blockquote class="border-l-4 border-yellow-400 pl-4 italic">{{ index . 0 }}</blockquote>
     </article>
   {{ end }}
+{{ end }}
+
 
   {{ with .Params.faq }}
     <article class="{{ $tile }}">
