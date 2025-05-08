@@ -1,5 +1,5 @@
 ---
-title: "Hilton Warsaw City"
+title: "Hilton Warsaw City2"
 slug: "hilton-warsaw"
 location: "Warsaw, Wola District"
 image: "/images/hilton.jpg"
@@ -8,3 +8,5 @@ card_blurb: "Sky-bar sunsets, poker rooms in the basement, Żoliborz skyline at 
 layout: "hotels/single"
 draft: false
 ---
+
+
