@@ -1,48 +1,68 @@
 ---
 title: "Sofitel Grand Sopot"
-slug: "sofitel-grand-sopot"
-description: "Historic seaside luxury with a renowned casino and spa on Poland’s Baltic coast."
+slug:  "sofitel-grand-sopot"
+description: "Historic 5-star icon on Poland’s Baltic coast, steps from Europe’s longest wooden pier."
+image: "/images/sofitel-grand-sopot.jpg"
+gallery:
+  - "/images/gallery/lobby.jpg"
+  - "/images/gallery/casino.jpg"
 location: "Sopot, Pomeranian Voivodeship"
 rating: 5
-image: "/images/sofitel-grand-sopot.jpg"
-
-gallery:
-  - "/images/sofitel-lobby.jpg"
-  - "/images/sofitel-roulette.jpg"
-
-tripadvisor: "https://www.tripadvisor.com/Hotel_Review-g274735-d275046-Reviews-Sofitel_Grand_Sopot-Sopot_Pomerania_Province_Northern_Poland.html"
-
-features:
-  - Ocean-view rooms
-  - Prestigious 24/7 casino
-  - Award-winning spa & sauna
-  - Gourmet Baltic cuisine
-  - Private poker lounge
-  - Concierge & limousine service
+checkin: 15:00
+checkout: 12:00
 
 casino: |
-  The hotel hosts **one of Poland’s most prestigious casinos** with classic roulette, blackjack, Texas Hold’em tables and over 100 modern slot machines.  
-  High-rollers can request a **private VIP salon** with personal croupier service.
+  A refined salon with **classic tables and contemporary slot machines**.  
+  Two private *casino rooms* cater to high-stakes players, while our main *casino hall* offers roulette, blackjack & poker in an Art-Deco setting.
 
 atmosphere: |
-  Built in 1927, the **art-deco façade** opens into marble corridors, velvet armchairs and a grand staircase.  
-  Evenings bring live jazz on the terrace while the Baltic sea breeze rolls in.
+  Opened in **1927**, the Grand marries French elegance with Baltic charm: marble corridors, chandeliers,
+  and sea-scented gardens leading to a **private beach**.
+
+rooms_suites:
+  - Deluxe Sea-View Room
+  - Prestige Park-View Room
+  - Junior Suite with Balcony
+  - Opera Suite (2 bedrooms)
+  - Presidential Apartment
+
+dining: |
+  **Grand Blue** serves modern Polish seafood, while **Le Bar** shakes signature martinis with live jazz at sunset.
+  Summer pop-up *Pier Bar* (beachfront) pours local craft beer.
+
+wellness_spa: |
+  • Heated indoor pool & mosaic hammam  
+  • Clarins-signature spa rituals  
+  • Yoga at dawn on the pier (seasonal)
+
+location_hits:
+  - 150 m to Sopot Pier
+  - 10 min walk to Monte Cassino Street
+  - 20 min drive to Gdańsk Airport
+
+meetings: |
+  Five daylight conference rooms (20-280 pax) plus the **Baltic Casino Hall** for gala dinners up to 200 guests.
+
+amenities:
+  - Private beach & pier access
+  - 24 h concierge
+  - Kids Club & game room
+  - Underground parking with EV chargers
+  - Pet-friendly floors
 
 faq:
-  - q: "Is the casino open to non-guests?"
-    a: "Yes. Visitors are welcome; passport or ID is required at the entrance."
-  - q: "What dress code applies in the casino?"
-    a: "Smart-casual. Jacket preferred after 8 p.m.; no beachwear."
-  - q: "Does the hotel offer airport transfers?"
-    a: "Private Mercedes transfers from Gdańsk Airport can be arranged 24/7."
+  - q: "Are casino halls open to non-residents?"
+    a: "Yes, with ID; smart-casual dress code after 8 p.m."
+  - q: "Is there a fee for spa facilities?"
+    a: "Pool & sauna free for guests; treatments extra."
+  - q: "Do rooms have balconies?"
+    a: "Most sea-view categories feature French balconies; suites have full terraces."
 
 reviews:
-  - "“Played poker till 2 a.m. then watched sunrise from my balcony — unforgettable!”"
-  - "“Spa is world-class, staff treat you like royalty.”"
-  - "“Best roulette odds I’ve seen in Poland.”"
+  - "Historic ambience, modern service. Loved roulette nights and sunrise yoga!"
+  - "Impeccable spa, spotless rooms, discreet casino rooms for VIP play."
 
+tripadvisor: "https://www.tripadvisor.com/Hotel_Review-g274735-d275085-Reviews-Sofitel_Grand_Sopot-Sopot_Pomerania_Province_Northern_Poland.html"
 layout: "hotels/single"
 draft: false
 ---
-
-Here you can write a longer *Markdown* description if you want. Feel free to add more details about room categories, seasonal offers, or insider tips for casino lovers.
