@@ -1,17 +1,33 @@
+{{/* layouts/index.html */}}
+
 {{ define "main" }}
 
-<!-- HERO (фіксований) -->
+<!-- ───── HERO (fixed) ───── -->
 <section class="relative">
-  <img src="{{ .Params.hero_image | relURL }}" class="w-full h-[70vh] object-cover">
-  <div class="absolute inset-0 bg-black/50"></div>
+  {{ with .Params.hero_image }}
+    <img src="{{ . | relURL }}" alt="{{ $.Params.hero_title | default $.Site.Title }}"
+         class="w-full h-[70vh] object-cover" loading="eager">
+    <div class="absolute inset-0 bg-black/50"></div>
+  {{ end }}
+
   <div class="absolute inset-0 flex flex-col justify-center items-center text-center text-white px-4">
-    <h1 class="text-4xl md:text-6xl font-extrabold">{{ .Params.hero_title }}</h1>
-    <p class="mt-4 text-lg md:text-2xl">{{ .Params.hero_sub }}</p>
+    {{ with .Params.hero_title }}
+      <h1 class="text-4xl md:text-6xl font-extrabold leading-tight">
+        {{ . }}
+      </h1>
+    {{ end }}
+    {{ with .Params.hero_sub }}
+      <p class="mt-4 text-lg md:text-2xl max-w-2xl">{{ . }}</p>
+    {{ end }}
   </div>
 </section>
 
-<!-- ДИНАМІЧНІ БЛОКИ -->
-{{ $blocks := slice "stats" "picks" "map" "tips" "why" "faq" "responsible" "signup" "blog" }}
+<!-- ───── DYNAMIC BLOCKS (shuffled) ───── -->
+{{/* Список partial-ів у папці layouts/partials/home/ */}}
+{{ $blocks := slice
+    "stats" "picks" "map" "tips" "why"
+    "faq" "responsible" "signup" "blog" }}
+
 <section class="bg-gray-50 dark:bg-neutral-900">
   <div class="container mx-auto px-4 py-16 space-y-16">
     {{ range shuffle $blocks }}

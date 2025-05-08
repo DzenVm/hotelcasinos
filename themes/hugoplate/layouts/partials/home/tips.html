@@ -1,0 +1,18 @@
+<section>
+    <h2 class="text-2xl font-semibold mb-8 text-center">Insider Tips</h2>
+    <div class="swiper tips-swiper">
+      <div class="swiper-wrapper">
+        {{ range .Site.Data.home.tips }}
+          <div class="swiper-slide bg-white dark:bg-neutral-800 rounded-xl shadow p-6">
+            {{ . }}
+          </div>
+        {{ end }}
+      </div>
+    </div>
+    <script>
+      if (typeof window !== 'undefined') {
+        new Swiper('.tips-swiper', { autoplay:{delay:4000}, loop:true });
+      }
+    </script>
+  </section>
+  
