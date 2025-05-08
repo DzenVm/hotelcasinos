@@ -1,0 +1,12 @@
+{{ $faq := .Site.Data.home.faq }}
+<section>
+  <h2 class="text-2xl font-semibold mb-8 text-center">FAQ</h2>
+  <div class="space-y-4 max-w-2xl mx-auto">
+    {{ range $faq }}
+      <details class="bg-white dark:bg-neutral-800 p-4 rounded">
+        <summary class="cursor-pointer font-medium">{{ .q }}</summary>
+        <p class="mt-2">{{ .a }}</p>
+      </details>
+    {{ end }}
+  </div>
+</section>

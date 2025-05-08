@@ -1,0 +1,17 @@
+<section>
+    <h2 class="text-2xl font-semibold mb-8 text-center">Top Picks This Week</h2>
+    <div class="grid gap-8 md:grid-cols-3">
+      {{ range first 3 (where site.RegularPages "Section" "hotels") }}
+        <a href="{{ .RelPermalink }}" class="block bg-white rounded-xl shadow hover:shadow-lg transition">
+          {{ with .Params.image }}
+            <img src="{{ . | relURL }}" class="w-full h-48 object-cover rounded-t-xl" loading="lazy">
+          {{ end }}
+          <div class="p-4">
+            <h3 class="font-semibold">{{ .Title }}</h3>
+            <p class="text-sm text-slate-600">{{ .Params.location }}</p>
+          </div>
+        </a>
+      {{ end }}
+    </div>
+  </section>
+  
