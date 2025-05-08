@@ -15,7 +15,7 @@
 <section class="bg-gray-50 dark:bg-neutral-900">
   <div class="container mx-auto px-4 py-16 space-y-16">
     {{ range shuffle $blocks }}
-      {{ partial (printf "home/%s.html" .) . }}
+      {{ partial (printf "home/%s.html" .) $ }}
     {{ end }}
   </div>
 </section>
