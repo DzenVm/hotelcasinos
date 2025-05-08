@@ -1,19 +1,17 @@
-{{/* layouts/hotels/single.html – tile version */}}
+{{/*  layouts/hotels/single.html  */}}
 
 {{ define "main" }}
 
-<!-- ── HERO ────────────────────────────────────────────────────────── -->
-{{ $heroW := 1600 }}{{ $heroH := 900 }}
-<section class="relative mt-[72px] lg:mt-[80px]">
-  {{ if .Params.image }}
-    <img src="{{ .Params.image | relURL }}" alt="{{ .Title }}"
-         width="{{ $heroW }}" height="{{ $heroH }}"
-         class="w-full max-h-[70vh] object-cover">
+{{/* ────────── HERO ────────── */}}
+<section class="relative mt-header lg:mt-header-lg">
+  {{ with .Params.image }}
+    <img src="{{ . | relURL }}" alt="{{ $.Title }}"
+         class="w-full h-[70vh] object-cover">
     <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
   {{ end }}
 
-  <div class="absolute bottom-6 left-6 md:bottom-10 md:left-10 max-w-3xl">
-    <h1 class="text-3xl md:text-5xl font-extrabold text-white leading-tight drop-shadow">
+  <div class="absolute bottom-8 left-8 max-w-3xl">
+    <h1 class="text-4xl lg:text-5xl font-extrabold text-white drop-shadow">
       {{ .Title }}
     </h1>
     {{ with .Params.description }}
@@ -22,40 +20,32 @@
   </div>
 </section>
 
-<!-- ── TILE WRAPPER ────────────────────────────────────────────────── -->
+{{/* ────────── TILE WRAPPER ────────── */}}
 <section class="container mx-auto px-4 py-12 grid gap-10">
 
-  {{/* Casino */}}
-  {{ with .Params.casino }}
-  <article class="bg-white rounded-2xl shadow p-8 space-y-4">
-    <h2 class="text-xl font-semibold flex items-center gap-2">🎰 Casino Experience</h2>
-    <div class="prose max-w-none">{{ . | markdownify }}</div>
-  </article>
-  {{ end }}
-
-  {{/* Atmosphere */}}
-  {{ with .Params.atmosphere }}
-  <article class="bg-white rounded-2xl shadow p-8 space-y-4">
-    <h2 class="text-xl font-semibold flex items-center gap-2">🏨 Hotel Atmosphere</h2>
-    <div class="prose max-w-none">{{ . | markdownify }}</div>
-  </article>
-  {{ end }}
-
-  {{/* Features */}}
-  {{ with .Params.features }}
-  <article class="bg-white rounded-2xl shadow p-8 space-y-4">
-    <h2 class="text-xl font-semibold flex items-center gap-2">🛎️ Amenities</h2>
-    <ul class="list-disc pl-6 grid sm:grid-cols-2 gap-x-8 gap-y-1">
-      {{ range . }}<li>{{ . }}</li>{{ end }}
-    </ul>
-  </article>
+  {{/* Casino • Atmosphere • Features */}}
+  {{ range $idx, $blk := slice
+      (dict "icon" "🎰" "title" "Casino Experience"  "body" .Params.casino)
+      (dict "icon" "🏨" "title" "Hotel Atmosphere"   "body" .Params.atmosphere)
+      (dict "icon" "🛎️" "title" "Amenities"
+            "body" (cond (gt (len .Params.features) 0)
+                         (printf "<ul class='list-disc pl-6'>%s</ul>"
+                                 ( delimit ( apply .Params.features "printf" "<li>%s</li>" ) "" ) ) "")) }}
+    {{ if $blk.body }}
+    <article class="card card-body space-y-4">
+      <h2 class="text-xl font-semibold flex items-center gap-2">
+        {{ $blk.icon }} <span>{{ $blk.title }}</span>
+      </h2>
+      <div class="prose max-w-none" dangerouslySetInnerHTML="{{ $blk.body }}"></div>
+    </article>
+    {{ end }}
   {{ end }}
 
   {{/* Reviews */}}
   {{ with first 1 .Params.reviews }}
-  <article class="bg-white rounded-2xl shadow p-8 space-y-4">
+  <article class="card card-body space-y-4">
     <h2 class="text-xl font-semibold flex items-center gap-2">💬 Guest Reviews</h2>
-    <blockquote class="border-l-4 border-yellow-400 pl-4 italic text-gray-700">
+    <blockquote class="border-l-4 border-yellow-400 pl-4 italic">
       {{ index . 0 }}
     </blockquote>
   </article>
@@ -63,7 +53,7 @@
 
   {{/* FAQ */}}
   {{ with .Params.faq }}
-  <article class="bg-white rounded-2xl shadow p-8 space-y-4">
+  <article class="card card-body space-y-4">
     <h2 class="text-xl font-semibold flex items-center gap-2">❓ Frequently Asked</h2>
     <div class="space-y-3">
       {{ range . }}
@@ -76,29 +66,29 @@
   </article>
   {{ end }}
 
-  {{/* TripAdvisor CTA */}}
+  {{/* CTA */}}
   {{ with .Params.tripadvisor }}
   <div class="text-center">
-    <a href="{{ . }}" target="_blank" rel="nofollow noopener"
-       class="btn btn-primary">
-       🔗 View on TripAdvisor
+    <a href="{{ . }}" target="_blank" rel="nofollow noopener" class="btn btn-primary">
+      🔗 View on TripAdvisor
     </a>
   </div>
   {{ end }}
 
 </section>
 
-<!-- ── GALLERY ─────────────────────────────────────────────────────── -->
+{{/* ────────── GALLERY ────────── */}}
 {{ with .Params.gallery }}
-<section class="container mx-auto px-4 pb-16 max-w-5xl">
+<section class="container mx-auto px-4 pb-16">
   <h2 class="text-2xl font-semibold mb-6 flex items-center gap-2">
     📸 <span>Photo Gallery</span>
   </h2>
+
   <div class="grid gap-6 sm:grid-cols-2">
     {{ range . }}
-      <img src="{{ . | relURL }}" alt="" loading="lazy"
-           width="1200" height="675"
-           class="w-full aspect-[16/9] object-cover rounded-xl shadow">
+      <figure class="overflow-hidden rounded-2xl shadow">
+        <img src="{{ . | relURL }}" alt="" class="w-full aspect-[16/9] object-cover">
+      </figure>
     {{ end }}
   </div>
 </section>
