@@ -1,8 +1,122 @@
 - value: "12"
-  label: "Casino Hotels"
+  label: "Hand-picked Hotels"
+
 - value: "4.7★"
   label: "Average Guest Rating"
+
 - value: "58 K"
-  label: "Nights Booked"
+  label: "Room Nights Booked"
+
 - value: "8"
-  label: "Coastal Cities"
+  label: "Coastal Cities Covered"
+
+- value: "1927"
+  label: "Oldest Building in Collection"
+
+- value: "310"
+  label: "Steps from Lobby to Beach (avg)"
+
+- value: "72 h"
+  label: "Fastest Photo-shoot Turnaround"
+
+- value: "11 kg"
+  label: "Biggest Amber Stone on Display"
+
+- value: "23 °C"
+  label: "Baltic Water Temp in August"
+
+- value: "3 min"
+  label: "Median Check-in Time"
+
+- value: "100 %"
+  label: "Rooms UV-sanitised After Checkout"
+
+- value: "75 dB"
+  label: "Loudest Lobby Jazz Crescendo"
+
+- value: "5 G"
+  label: "Mobile Coverage—even in Sauna"
+
+- value: "730 l"
+  label: "Sea-Salt Water Cycled Daily in Spa"
+
+- value: "44 %"
+  label: "Guests Who Request Sea-view"
+
+- value: "1 932 m"
+  label: "Length of Sopot Pier Nearby"
+
+- value: "28 km/h"
+  label: "Wind Limit for Rooftop Bar Opening"
+
+- value: "92 %"
+  label: "Guests Calling Staff “Super Friendly”"
+
+- value: "17 km"
+  label: "Longest Coastal Bike Path We Love"
+
+- value: "34 m"
+  label: "Depth of Oldest Artesian Well"
+
+- value: "7 kg"
+  label: "Croissants Baked Every Morning"
+
+- value: "2 min"
+  label: "Walk from Lobby to Train Station"
+
+- value: "48 h"
+  label: "Free-Cancellation Window"
+
+- value: "3 : 1"
+  label: "Spa Treatments per Business Trip"
+
+- value: "12 kWh"
+  label: "Solar Power Generated Daily"
+
+- value: "19 °"
+  label: "Ideal Room Temp for Jet-lag Recovery"
+
+- value: "6  / 10"
+  label: "Average Occupancy per Conference"
+
+- value: "11 h 44 m"
+  label: "Longest Guest Stay in Lobby Café"
+
+- value: "300 m²"
+  label: "Size of Largest Roof Garden"
+
+- value: "73 %"
+  label: "Visitors Trying Sunrise Pier Yoga"
+
+- value: "200+"
+  label: "Local Craft Beers Curated"
+
+- value: "17 k"
+  label: "Photos Tagged #BalticBalcony"
+
+- value: "65 m"
+  label: "Tallest Atrium in Collection"
+
+- value: "1 : 4"
+  label: "Team-to-Hotel Support Ratio"
+
+- value: "15"
+  label: "Languages Our Concierge Speaks"
+
+- value: "38 cm"
+  label: "Diameter of Lobby Chandelier Crystal"
+
+- value: "27 000"
+  label: "Bottles of Mineral Water Recycled"
+
+- value: "0.9 s"
+  label: "Fastest Site Page-load (Core Web)"
+
+- value: "48 %"
+  label: "Solo Travellers This Season"
+
+- value: "14"
+  label: "Different Pillow Types Available"
+
+- value: "208 km"
+  label: "Farthest Guest Arrival by Bicycle"

@@ -1,9 +1,14 @@
 <section class="text-center">
     <h2 class="text-2xl font-semibold mb-8">Why Travellers Choose Us</h2>
-    <div class="grid gap-8 sm:grid-cols-3">
-      <div><span class="text-4xl">🎲</span><p class="mt-2">Casino halls <br>on-site</p></div>
-      <div><span class="text-4xl">🌊</span><p class="mt-2">Sea-view <br>rooms</p></div>
-      <div><span class="text-4xl">🛡️</span><p class="mt-2">GDPR-friendly <br>privacy</p></div>
+  
+    <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+      {{ range first 4 (shuffle .Site.Data.home.why) }}
+        <div class="flex flex-col items-center gap-2">
+          <span class="text-4xl">{{ .icon }}</span>
+          <p>{{ .text }}</p>
+        </div>
+      {{ end }}
     </div>
   </section>
+  
   
