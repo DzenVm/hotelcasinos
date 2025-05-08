@@ -32,4 +32,3 @@
 
 @import "./module-overrides.css";
 @import "./custom.css";
-@import "./components.css";
