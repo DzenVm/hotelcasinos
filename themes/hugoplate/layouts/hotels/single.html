@@ -1,12 +1,82 @@
 {{ define "main" }}
-<section class="container mx-auto px-4 py-12 max-w-3xl">
-  <h1 class="text-4xl font-bold mb-4">{{ .Title }}</h1>
-  <p class="text-lg mb-6">{{ .Params.description }}</p>
 
+<!-- Hero -->
+<section class="relative">
   {{ with .Params.image }}
-    <img src="{{ . | relURL }}" alt="{{ $.Title }}" class="w-full h-64 object-cover rounded-xl shadow mb-8">
+    <img src="{{ . | relURL }}" alt="{{ $.Title }}"
+         class="w-full h-[420px] object-cover rounded-b-2xl shadow-lg" loading="lazy">
+  {{ end }}
+  <h1 class="absolute bottom-6 left-6 text-4xl md:text-5xl font-extrabold text-white drop-shadow-lg">
+    {{ .Title }}
+  </h1>
+</section>
+
+<!-- Overview -->
+<section class="container mx-auto px-4 py-12 max-w-3xl">
+  <p class="text-lg mb-8">{{ .Params.description }}</p>
+
+  <!-- Casino -->
+  {{ with .Params.casino }}
+  <h2 class="text-2xl font-semibold mb-3">🎰 Casino Experience</h2>
+  <div class="prose max-w-none mb-8">{{ . | markdownify }}</div>
   {{ end }}
 
-  {{ .Content }}
+  <!-- Atmosphere -->
+  {{ with .Params.atmosphere }}
+  <h2 class="text-2xl font-semibold mb-3">🏨 Hotel Atmosphere</h2>
+  <div class="prose max-w-none mb-8">{{ . | markdownify }}</div>
+  {{ end }}
+
+  <!-- Features -->
+  {{ with .Params.features }}
+  <h2 class="text-2xl font-semibold mb-3">🛎️ Amenities</h2>
+  <ul class="list-disc pl-6 mb-8">
+    {{ range . }}<li>{{ . }}</li>{{ end }}
+  </ul>
+  {{ end }}
+
+  <!-- Reviews -->
+  {{ with first 1 .Params.reviews }}
+  <h2 class="text-2xl font-semibold mb-3">💬 Guest Reviews</h2>
+  <blockquote class="border-l-4 border-yellow-400 pl-4 italic text-gray-600 mb-8">
+    {{ index . 0 }}
+  </blockquote>
+  {{ end }}
+
+  <!-- FAQ -->
+  {{ with .Params.faq }}
+  <h2 class="text-2xl font-semibold mb-3">❓ Frequently Asked</h2>
+  <div class="space-y-4 mb-10">
+    {{ range . }}
+    <details class="bg-gray-100 p-4 rounded-lg">
+      <summary class="cursor-pointer font-medium">{{ .q }}</summary>
+      <p class="mt-2">{{ .a }}</p>
+    </details>
+    {{ end }}
+  </div>
+  {{ end }}
+
+  <!-- TripAdvisor -->
+  {{ with .Params.tripadvisor }}
+  <div class="text-center">
+    <a href="{{ . }}" target="_blank" rel="nofollow noopener"
+       class="inline-block bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-xl shadow transition">
+       🔗 View on TripAdvisor
+    </a>
+  </div>
+  {{ end }}
 </section>
+
+<!-- Gallery -->
+{{ with .Params.gallery }}
+<section class="container mx-auto px-4 pb-16">
+  <h2 class="text-2xl font-semibold mb-6">📸 Photo Gallery</h2>
+  <div class="grid sm:grid-cols-2 gap-6">
+    {{ range . }}
+      <img src="{{ . | relURL }}" class="w-full h-64 object-cover rounded-xl shadow" loading="lazy" alt="">
+    {{ end }}
+  </div>
+</section>
+{{ end }}
+
 {{ end }}
