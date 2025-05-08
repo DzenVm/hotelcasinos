@@ -2,3 +2,7 @@
   a: "No — just bring ID; smart-casual dress after 8 p.m."
 - q: "Is breakfast included in all rates?"
   a: "Yes, except the non-refundable saver plans."
+- q: "Is parking free?"
+  a: "Yes, one spot per room in underground garage."
+- q: "Can I cancel without fee?"
+  a: "Flexible rates — free up to 48 h; saver rates — non-refundable."
