@@ -2,51 +2,48 @@
 
 {{ define "main" }}
 
-<!-- ── HERO ─────────────────────────────────────────────────────────── -->
-<section class="relative h-[420px] rounded-b-2xl overflow-hidden shadow-lg">
-  {{ if .Params.image }}
-    <img src="{{ .Params.image | relURL }}" alt="{{ .Title }}"
-         class="absolute inset-0 w-full h-full object-cover">
-    <!-- темний градієнт для контрасту -->
+<!-- ╔══════ HERO ══════╗ -->
+{{ $heroW := 1600 }} {{ $heroH := 900 }}   {{/* підстав реальні, якщо знаєш */}}
+<section class="relative mt-[72px] lg:mt-[80px]">
+  {{ with .Params.image }}
+    <img src="{{ . | relURL }}"
+         alt="{{ $.Title }}"
+         width="{{ $heroW }}" height="{{ $heroH }}"
+         class="w-full max-h-[70vh] object-cover">
     <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
   {{ end }}
 
-  <div class="relative z-10 h-full flex flex-col justify-end p-6 md:p-10">
-    <h1 class="text-3xl md:text-5xl font-extrabold text-white leading-tight">
+  <!-- текст поверх фото -->
+  <div class="absolute bottom-6 left-6 md:bottom-10 md:left-10 max-w-3xl">
+    <h1 class="text-3xl md:text-5xl font-extrabold text-white leading-tight drop-shadow-lg">
       {{ .Title }}
     </h1>
     {{ with .Params.description }}
-      <p class="mt-3 text-white/80 max-w-3xl">{{ . }}</p>
+      <p class="mt-3 text-white/80">{{ . }}</p>
     {{ end }}
   </div>
 </section>
+<!-- ╚══════════════════╝ -->
 
-<!-- ── MAIN CONTENT ─────────────────────────────────────────────────── -->
 <section class="container mx-auto px-4 py-12 max-w-3xl space-y-12">
 
   {{ with .Params.casino }}
   <div>
-    <h2 class="text-2xl font-semibold mb-3 flex items-center gap-2">
-      🎰 <span>Casino Experience</span>
-    </h2>
+    <h2 class="text-2xl font-semibold mb-3 flex items-center gap-2">🎰 Casino Experience</h2>
     <div class="prose max-w-none">{{ . | markdownify }}</div>
   </div>
   {{ end }}
 
   {{ with .Params.atmosphere }}
   <div>
-    <h2 class="text-2xl font-semibold mb-3 flex items-center gap-2">
-      🏨 <span>Hotel Atmosphere</span>
-    </h2>
+    <h2 class="text-2xl font-semibold mb-3 flex items-center gap-2">🏨 Hotel Atmosphere</h2>
     <div class="prose max-w-none">{{ . | markdownify }}</div>
   </div>
   {{ end }}
 
   {{ with .Params.features }}
   <div>
-    <h2 class="text-2xl font-semibold mb-3 flex items-center gap-2">
-      🛎️ <span>Amenities</span>
-    </h2>
+    <h2 class="text-2xl font-semibold mb-3 flex items-center gap-2">🛎️ Amenities</h2>
     <ul class="list-disc pl-6 grid sm:grid-cols-2 gap-x-8 gap-y-1">
       {{ range . }}<li>{{ . }}</li>{{ end }}
     </ul>
@@ -55,9 +52,7 @@
 
   {{ with first 1 .Params.reviews }}
   <div>
-    <h2 class="text-2xl font-semibold mb-3 flex items-center gap-2">
-      💬 <span>Guest Reviews</span>
-    </h2>
+    <h2 class="text-2xl font-semibold mb-3 flex items-center gap-2">💬 Guest Reviews</h2>
     <blockquote class="border-l-4 border-yellow-400 pl-4 italic text-gray-700">
       {{ index . 0 }}
     </blockquote>
@@ -66,9 +61,7 @@
 
   {{ with .Params.faq }}
   <div>
-    <h2 class="text-2xl font-semibold mb-3 flex items-center gap-2">
-      ❓ <span>Frequently Asked</span>
-    </h2>
+    <h2 class="text-2xl font-semibold mb-3 flex items-center gap-2">❓ Frequently Asked</h2>
     <div class="space-y-3">
       {{ range . }}
       <details class="bg-gray-50 p-4 rounded-md">
@@ -90,18 +83,20 @@
 
 </section>
 
-<!-- ── GALLERY ───────────────────────────────────────────────────────── -->
+<!-- ╔══════ GALLERY ═════╗ -->
 {{ with .Params.gallery }}
 <section class="container mx-auto px-4 pb-16 max-w-5xl">
-  <h2 class="text-2xl font-semibold mb-6 flex items-center gap-2">
-    📸 <span>Photo Gallery</span>
-  </h2>
-  <div class="grid sm:grid-cols-2 gap-6">
+  <h2 class="text-2xl font-semibold mb-6 flex items-center gap-2">📸 Photo Gallery</h2>
+  <div class="grid gap-6 sm:grid-cols-2">
     {{ range . }}
-      <img src="{{ . | relURL }}" class="w-full h-72 object-cover rounded-xl shadow" loading="lazy" alt="">
+      {{/* ставимо 1200×675 як дефолт 16:9; при бажанні зміни */}}
+      <img src="{{ . | relURL }}" alt="" loading="lazy"
+           width="1200" height="675"
+           class="w-full aspect-[16/9] object-cover rounded-xl shadow">
     {{ end }}
   </div>
 </section>
 {{ end }}
+<!-- ╚════════════════════╝ -->
 
 {{ end }}
