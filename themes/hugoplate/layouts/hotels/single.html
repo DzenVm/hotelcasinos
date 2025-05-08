@@ -1,0 +1,12 @@
+{{ define "main" }}
+<section class="container mx-auto px-4 py-12 max-w-3xl">
+  <h1 class="text-4xl font-bold mb-4">{{ .Title }}</h1>
+  <p class="text-lg mb-6">{{ .Params.description }}</p>
+
+  {{ with .Params.image }}
+    <img src="{{ . | relURL }}" alt="{{ $.Title }}" class="w-full h-64 object-cover rounded-xl shadow mb-8">
+  {{ end }}
+
+  {{ .Content }}
+</section>
+{{ end }}
