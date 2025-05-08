@@ -1,6 +1,6 @@
 ---
 title: "Sofitel Grand Sopot"
-slug: "sofitel-grand-sopot"
+slug:  "sofitel-grand-sopot"
 description: "A 1920s Baltic legend: sea-view suites, velvet poker nights, and the soft rustle of pines behind Europe’s longest wooden pier."
 image: "/images/sofitel-grand-sopot.jpg"
 
@@ -32,7 +32,7 @@ rooms_suites:
 dining: |
   **Grand Blue** plates Baltic turbot with horseradish butter and a mischievous splash of chilled Goldwasser.  
   **Le Bar** mixes the *Monciak Negroni*: a classic stirred with a dash of cranberry bitters for local colour.  
-  Come summer, the **Pier Bar** pops up in the sand—grilled sea-bass, cold craft lager, and an outdoor screening of cult Polish flick *Rejs* on Friday nights.
+  Each summer the **Pier Bar** pops up in the sand—grilled sea-bass, cold craft lager, and an outdoor screening of cult Polish flick *Rejs* on Friday nights.
 
 wellness_spa: |
   • Sky-lit pool where clouds drift across the ceiling.  
@@ -72,3 +72,6 @@ tripadvisor: "https://www.tripadvisor.com/Hotel_Review-g274735-d275085-Reviews-S
 
 layout: "hotels/single"
 draft: false
+---
+
+*(Optional long-form article can go here—leave blank if not needed.)*
