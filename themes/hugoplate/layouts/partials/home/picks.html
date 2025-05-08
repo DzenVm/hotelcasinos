@@ -2,9 +2,10 @@
     <h2 class="text-2xl font-semibold mb-8 text-center">Top Picks This Week</h2>
   
     <div class="grid gap-8 md:grid-cols-3">
-      {{/* випадкові 6 готелів */}}
       {{ range first 6 (shuffle (where site.RegularPages "Section" "hotels")) }}
-        <a href="{{ .RelPermalink }}" class="block bg-white dark:bg-neutral-800 rounded-xl shadow hover:shadow-lg transition">
+        <div class="bg-white dark:bg-neutral-800 rounded-xl shadow hover:shadow-lg transition flex flex-col">
+  
+          {{/* ── зображення ── */}}
           {{ with .Params.image }}
             <img src="{{ . | relURL }}" class="w-full h-48 object-cover rounded-t-xl" loading="lazy">
           {{ else }}
@@ -13,18 +14,24 @@
             </div>
           {{ end }}
   
-          <div class="p-4 space-y-1">
+          {{/* ── текст ── */}}
+          <div class="p-4 flex-1 space-y-1">
             <h3 class="font-semibold text-lg">{{ .Title }}</h3>
             <p class="text-sm text-slate-600">{{ .Params.location }}</p>
   
-            {{/* card_blurb або обрізаний description */}}
             {{- $blurb := .Params.card_blurb -}}
             {{- if not $blurb -}}
               {{ $blurb = truncate 110 (plainify (.Params.description | default "")) }}
             {{- end -}}
             <p class="text-sm text-slate-700 dark:text-slate-300 line-clamp-3">{{ $blurb }}</p>
           </div>
-        </a>
+  
+          {{/* ── кнопка ── */}}
+          <a href="{{ .RelPermalink }}"
+             class="block bg-primary hover:bg-primary/90 text-white text-center font-semibold py-3 rounded-b-xl transition">
+            Book&nbsp;now
+          </a>
+        </div>
       {{ end }}
     </div>
   </section>
