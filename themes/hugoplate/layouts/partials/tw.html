@@ -1,7 +1,7 @@
 {{/* layouts/partials/tw.html
      Виклик: class="{{ partial "tw" "bg-primary p-4 lg:flex" }}" */}}
 
-     {{- $prefix := site.Params.twPrefix | default (getenv "TW_PREFIX") | default "" -}}
+     {{- $prefix := site.Params.twPrefix | default (getenv "HUGO_TW_PREFIX") | default "" -}}
      {{- $out := slice -}}
      {{- range (split . " ") -}}
        {{- $out = $out | append (print $prefix .) -}}
