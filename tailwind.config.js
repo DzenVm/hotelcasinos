@@ -1,34 +1,26 @@
-@import "tailwindcss";
-@plugin "@tailwindcss/forms";
-@plugin "@tailwindcss/typography";
-@plugin "../../../../tailwind-plugin/tw-theme";
-@plugin "../../../../tailwind-plugin/tw-bs-grid";
-@source "hugo_stats.json";
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  // Шляхи, де Tailwind шукає класи:
+  content: [
+    "./layouts/**/*.{html,js}",
+    "./themes/**/*.{html,js}",
+    "./content/**/*.{md,html}",
+  ],
 
-@custom-variant dark (&:where(.dark, .dark *));
+  // ▸ Рандомний префікс прилітає з TW_PREFIX
+  prefix: process.env.TW_PREFIX ?? "",
 
-@import "./safe.css";
-@import "./utilities.css";
+  theme: { extend: {} },
 
-@layer base {
-  @import "./base.css";
-}
+  plugins: [
+    require("@tailwindcss/forms"),
+    require("@tailwindcss/typography"),
+    require("../../tailwind-plugin/tw-theme"),
+    require("../../tailwind-plugin/tw-bs-grid"),
+  ],
 
-@layer components {
-  @import "./components.css";
-  @import "./navigation.css";
-  @import "./buttons.css";
-}
-
-@import "./search.css";
-@import "./social-share.css";
-@import "./gallery-slider.css";
-@import "./images.css";
-@import "./toc.css";
-@import "./tab.css";
-@import "./accordion.css";
-@import "./modal.css";
-@import "./notice.css";
-
-@import "./module-overrides.css";
-@import "./custom.css";
+  safelist: [
+    { pattern: /^bg-/, variants: ["hover"] },
+    { pattern: /^text-/, variants: ["hover"] },
+  ],
+};

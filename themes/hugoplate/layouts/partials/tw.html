@@ -1,0 +1,6 @@
+{{- $p := .Site.Params.twPrefix | default "" -}}
+{{- $out := slice -}}
+{{- range (split . " ") }}
+  {{- $out = $out | append (print $p .) -}}
+{{- end -}}
+{{ delimit $out " " -}}
