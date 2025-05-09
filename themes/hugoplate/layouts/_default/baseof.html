@@ -1,54 +1,55 @@
+{{/* layouts/_default/baseof.html */}}
 <!doctype html>
+{{/* ─────────── <html> ─────────── */}}
+{{ $rootClass := "" }}
+{{ if not site.Params.theme_switcher }}
+  {{ $rootClass = site.Params.theme_default }}
+{{ end }}
 <html
   itemscope
-  class="{{- if not site.Params.theme_switcher -}}
-    {{- site.Params.theme_default -}}
-  {{- end -}}"
+  {{/* додаємо префікс лише якщо клас не порожній */}}
+  {{ if $rootClass }}
+    class="{{ partial "tw" $rootClass }}"
+  {{ end }}
   lang="{{ site.LanguageCode | default `en-US` }}"
   itemtype="http://schema.org/WebPage">
+
   <head>
+    <!-- Tailwind-CSS із префіксом уже збирається скриптом -->
     <link rel="stylesheet" href="/css/tailwind.css" />
-    <!-- head (don't cache it) -->
+
+    <!-- head (не кешуємо) -->
     {{ partial "essentials/head.html" . }}
 
-
-    <!-- style (always cache it) -->
+    <!-- style (кешуємо завжди) -->
     {{ partialCached "essentials/style.html" . }}
-
   </head>
 
   <body>
-    <!-- cache partial only in production -->
+    {{/* ───── Preloader & GTM ───── */}}
     {{ if hugo.IsProduction }}
       {{ partialCached "preloader.html" . }}
       {{ partialCached "gtm-noscript.html" . }}
     {{ else }}
       {{ partial "preloader.html" . }}
-
-
-      <!-- tailwind size indicator -->
       {{ partial "components/tw-size-indicator.html" . }}
     {{ end }}
 
-
-    <!-- announcement -->
+    {{/* Announcement */}}
     {{ partialCached "announcement.html" . }}
 
-
-    <!-- header (don't cache it) -->
+    {{/* Header (+ search modal) */}}
     {{ partial "essentials/header.html" . }}
-    {{ partial "search-modal.html" (dict "Context" . ) }}
-
+    {{ partial "search-modal.html" (dict "Context" .) }}
 
     <main>
       {{ block "main" . }}{{ end }}
     </main>
 
-    <!-- footer -->
+    {{/* Footer */}}
     {{ partial "essentials/footer.html" . }}
 
-
-    <!-- script (always cache it) -->
+    {{/* Scripts (кешуємо завжди) */}}
     {{ partialCached "essentials/script.html" . }}
   </body>
 </html>

@@ -1,34 +1,34 @@
 {{ define "main" }}
   {{ partial "page-header" . }}
 
-
-  <section class="section">
-    <div class="container">
-      <ul class="text-center">
+  <section class="{{ partial "tw" "section" }}">
+    <div class="{{ partial "tw" "container" }}">
+      <ul class="{{ partial "tw" "text-center" }}">
         {{/* categories */}}
         {{ if eq .Permalink (`categories/` | absLangURL) }}
           {{ range site.Taxonomies.categories.ByCount }}
-            <li class="m-3 inline-block">
+            <li class="{{ partial "tw" "m-3 inline-block" }}">
               <a
                 href="{{ .Page.Permalink }}"
-                class="bg-light text-text-dark dark:bg-darkmode-light dark:text-darkmode-text-dark block rounded px-4 py-2 text-xl">
+                class="{{ partial "tw" "bg-light text-text-dark block rounded px-4 py-2 text-xl" }} dark:bg-darkmode-light dark:text-darkmode-text-dark">
                 {{ .Page.Title }}
-                <span class="bg-body dark:bg-darkmode-body ml-2 rounded px-2">
+                <span class="{{ partial "tw" "bg-body ml-2 rounded px-2" }} dark:bg-darkmode-body">
                   {{ .Count }}
                 </span>
               </a>
             </li>
           {{ end }}
         {{ end }}
+
         {{/* tags */}}
         {{ if eq .Permalink (`tags/` | absLangURL) }}
           {{ range site.Taxonomies.tags.ByCount }}
-            <li class="m-3 inline-block">
+            <li class="{{ partial "tw" "m-3 inline-block" }}">
               <a
                 href="{{ .Page.Permalink }}"
-                class="bg-light text-text-dark dark:bg-darkmode-light dark:text-darkmode-text-dark block rounded px-4 py-2 text-xl">
+                class="{{ partial "tw" "bg-light text-text-dark block rounded px-4 py-2 text-xl" }} dark:bg-darkmode-light dark:text-darkmode-text-dark">
                 {{ .Page.Title }}
-                <span class="bg-body dark:bg-darkmode-body ml-2 rounded px-2">
+                <span class="{{ partial "tw" "bg-body ml-2 rounded px-2" }} dark:bg-darkmode-body">
                   {{ .Count }}
                 </span>
               </a>
