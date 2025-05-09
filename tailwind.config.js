@@ -1,28 +1,42 @@
 /** @type {import('tailwindcss').Config} */
 
-// ① Зчитуємо префікс
+// Беремо префікс із дозволеної змінної середовища
 const prefix = process.env.HUGO_TW_PREFIX ?? "";
-console.log("TAILWIND-DEBUG prefix =", JSON.stringify(prefix));
 
 module.exports = {
-  // → Вимикаємо purge для debug
-  content: [],
+  // Шляхи, де Tailwind сканує класи для purge
+  content: [
+    "./layouts/**/*.{html,js}",
+    "./themes/**/*.{html,js}",
+    "./content/**/*.{md,html}",
+  ],
 
-  // → Встановлюємо префікс
+  // Додаємо префікс до всіх утиліт
   prefix,
 
-  theme: { extend: {} },
-  plugins: [],
+  theme: {
+    extend: {},
+  },
 
-  // → Грубий safelist, щоб будь-які префіксовані класи лишалися
+  plugins: [
+    require("@tailwindcss/forms"),
+    require("@tailwindcss/typography"),
+    require("../../tailwind-plugin/tw-theme"),
+    require("../../tailwind-plugin/tw-bs-grid"),
+  ],
+
+  // Зберігаємо всі класи з нашим префіксом навіть якщо purge їх не «побачить»
   safelist: [
+    // будь-які утиліти з префіксом, напр. .abc-bg-primary, .abc-p-4 тощо
     { pattern: new RegExp(`^${prefix}`) },
-    { pattern: new RegExp(`^sm:${prefix}`) },
-    { pattern: new RegExp(`^hover:${prefix}`) },
+
+    // dark:abc-bg-neutral-900
     { pattern: new RegExp(`^dark:${prefix}`) },
+
+    // responsive: sm:abc-p-6, lg:abc-grid-cols-3
+    { pattern: new RegExp(`^(sm|md|lg|xl|2xl):${prefix}`) },
+
+    // стани hover/focus/active: hover:abc-bg-primary, focus:abc-ring
+    { pattern: new RegExp(`^(hover|focus|active):${prefix}`) },
   ],
 };
-
-// ② Перевіряємо довжину safelist
-console.log("TAILWIND-DEBUG safelist count =", module.exports.safelist.length);
-console.log("DBG prefix =", process.env.HUGO_TW_PREFIX)
