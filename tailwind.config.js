@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 
-const prefix = process.env.TW_PREFIX ?? "";
+const prefix = process.env.HUGO_TW_PREFIX ?? "";
+console.log("TAILWIND-DEBUG  prefix =", prefix);
 
 module.exports = {
   // Шлях, де Tailwind сканує класи
