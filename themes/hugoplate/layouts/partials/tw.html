@@ -1,6 +1,8 @@
-{{- $p := .Site.Params.twPrefix | default "" -}}
+{{/* Виклик: class="{{ partial "tw" "bg-primary p-4" }}" */}}
+
+{{- $prefix := site.Params.twPrefix | default "" -}}
 {{- $out := slice -}}
 {{- range (split . " ") }}
-  {{- $out = $out | append (print $p .) -}}
+  {{- $out = $out | append (print $prefix .) -}}
 {{- end -}}
 {{ delimit $out " " -}}
