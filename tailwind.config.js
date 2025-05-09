@@ -25,3 +25,4 @@ module.exports = {
 
 // ② Перевіряємо довжину safelist
 console.log("TAILWIND-DEBUG safelist count =", module.exports.safelist.length);
+console.log("DBG prefix =", process.env.HUGO_TW_PREFIX)
