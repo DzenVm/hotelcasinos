@@ -1,0 +1,15 @@
+{{/* data/home/press.yml: - name: Forbes url: "#" logo: /images/press/forbes.svg */}}
+
+<section class="text-center">
+    <h2 class="text-2xl font-semibold mb-8">As Seen In</h2>
+  
+    <div class="flex flex-wrap justify-center gap-10">
+      {{ range .Site.Data.home.press }}
+        <a href="{{ .url }}" target="_blank" rel="noopener"
+           class="opacity-60 hover:opacity-100 transition">
+          <img src="{{ .logo | relURL }}" alt="{{ .name }}" class="h-8 md:h-10">
+        </a>
+      {{ end }}
+    </div>
+  </section>
+  

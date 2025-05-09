@@ -1,0 +1,12 @@
+{{/* data/home/partners.yml: - name: Booking.com  logo: /images/partners/booking.svg */}}
+
+<section class="text-center">
+    <h2 class="text-2xl font-semibold mb-8">Official Partners</h2>
+  
+    <div class="flex flex-wrap justify-center gap-8 md:gap-12">
+      {{ range .Site.Data.home.partners }}
+        <img src="{{ .logo | relURL }}" alt="{{ .name }}" class="h-10 md:h-14 grayscale hover:grayscale-0 transition">
+      {{ end }}
+    </div>
+  </section>
+  

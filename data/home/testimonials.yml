@@ -1,0 +1,14 @@
+- name: "Lucia"
+  city: "Berlin"
+  avatar: "/images/avatars/lucia.jpg"
+  quote: "Played poker till 2 a.m., then watched sunrise from balcony—magic!"
+
+- name: "Oskar"
+  city: "Stockholm"
+  avatar: "/images/avatars/oskar.jpg"
+  quote: "Spa salt-room cured my hangover faster than coffee."
+
+- name: "Maya"
+  city: "Prague"
+  avatar: "/images/avatars/maya.jpg"
+  quote: "Kids club handmade amber bracelets—now our fridge magnets look sad."
