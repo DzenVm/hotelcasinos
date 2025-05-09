@@ -1,20 +1,24 @@
 #!/usr/bin/env bash
 set -e
 
-#  Генеруємо 3 ASCII-символи a–z | 0–9 (працює і на macOS, і на Linux)
+# 1) надійно генеруємо 3 ASCII символи
 PREFIX=$(LC_ALL=C tr -dc 'a-z0-9' </dev/urandom | head -c3)
+[ -z "$PREFIX" ] && PREFIX="x$(date +%S)"          # fallback
 
-# fallback, щоб точно не було порожньо
-[ -z "$PREFIX" ] && PREFIX="x$(date +%N | tail -c2)"
+echo "🔀 TW_PREFIX буде: ${PREFIX}-"
 
-echo "🔀  Префікс цього білда: ${PREFIX}-"
-
+# 2) показуємо, чи змінні реально передаються
 export TW_PREFIX="${PREFIX}-"
 export HUGO_PARAMS_twPrefix="${PREFIX}-"
 
-npx tailwindcss \
+echo "   ▶️  $TW_PREFIX (env для Tailwind)"
+echo "   ▶️  $HUGO_PARAMS_twPrefix (env для Hugo)"
+
+# 3) білд Tailwind-CSS
+npx --yes tailwindcss \
   -i ./themes/hugoplate/assets/css/main.css \
   -o ./static/css/tailwind.css \
   --minify
 
+# 4) білд Hugo
 hugo --gc --minify
