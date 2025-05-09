@@ -23,20 +23,13 @@ module.exports = {
     require("../../tailwind-plugin/tw-bs-grid"),
   ],
 
-  /* ———  SAFELIST  ———
-     Зберігає в CSS усі класи, що починаються з нашого префікса,
-     навіть якщо Tailwind їх не «побачив» у шаблонах під час скану. */
-  safelist: [
-    /* базові утиліти з префіксом */
-    { pattern: new RegExp(`^${prefix}[a-z0-9_-]+`) },
+  /* ———  SAFELIST  ——— */
+     
+safelist: [
+  { pattern: new RegExp(`^${prefix}`) },                   // будь-які класи з префікса
+  { pattern: new RegExp(`^(sm|md|lg|xl|2xl):${prefix}`) }, // responsive
+  { pattern: new RegExp(`^(hover|focus|active):${prefix}`) },
+  { pattern: new RegExp(`^dark:${prefix}`) },
+],
 
-    /* responsive-варіанти: sm: lg: md: xl: 2xl: */
-    { pattern: new RegExp(`^(sm|md|lg|xl|2xl):${prefix}`) },
-
-    /* hover:focus etc. (якщо використовуєте) */
-    { pattern: new RegExp(`^(hover|focus|active):${prefix}`) },
-
-    /* dark: варіант */
-    { pattern: new RegExp(`^dark:${prefix}`) },
-  ],
 };
