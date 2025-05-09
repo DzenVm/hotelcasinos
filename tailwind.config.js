@@ -12,16 +12,15 @@ module.exports = {
   ],
 
   /* Додаємо префікс до всіх утиліт */
-  prefix,
+  const prefix = process.env.TW_PREFIX ?? "";
 
-  theme: { extend: {} },
-
-  plugins: [
-    require("@tailwindcss/forms"),
-    require("@tailwindcss/typography"),
-    require("../../tailwind-plugin/tw-theme"),
-    require("../../tailwind-plugin/tw-bs-grid"),
+  safelist: [
+    { pattern: new RegExp(`^${prefix}`) },
+    { pattern: new RegExp(`^(sm|md|lg|xl|2xl):${prefix}`) },
+    { pattern: new RegExp(`^(hover|focus|active):${prefix}`) },
+    { pattern: new RegExp(`^dark:${prefix}`) },
   ],
+  
 
   /* ———  SAFELIST  ——— */
      
