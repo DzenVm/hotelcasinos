@@ -1,17 +1,17 @@
 /** @type {import('tailwindcss').Config} */
 
+/* 1 ▪︎ Префікс із дозволеної змінної довкілля */
 const prefix = process.env.HUGO_TW_PREFIX ?? "";
-console.log("TAILWIND-DEBUG  prefix =", prefix);
 
 module.exports = {
-  // Шлях, де Tailwind сканує класи
+  /* 2 ▪︎ Файли, де Tailwind сканує класи */
   content: [
     "./layouts/**/*.{html,js}",
     "./themes/**/*.{html,js}",
     "./content/**/*.{md,html}",
   ],
 
-  // Додаємо префікс до ВСІХ утиліт
+  /* 3 ▪︎ Додаємо префікс до ВСІХ утиліт Tailwind */
   prefix,
 
   theme: { extend: {} },
@@ -23,21 +23,12 @@ module.exports = {
     require("../../tailwind-plugin/tw-bs-grid"),
   ],
 
-  /* -------------  SAFELIST ------------- *
-   * Purge не «бачить» утиліт, бо вони всередині {{ partial "tw" }}
-   * Тому залишаємо ВСІ класи з поточним префіксом.
-   */
+  /* 4 ▪︎ Safelist зберігає всі класи з поточним префіксом
+         (responsive-, hover-, dark-варіанти теж)                */
   safelist: [
-    // власне утиліта
-    { pattern: new RegExp(`^${prefix}[a-z0-9_/:-]+`) },
-
-    // responsive-варіанти
-    { pattern: new RegExp(`^(sm|md|lg|xl|2xl):${prefix}[a-z0-9_/:-]+`) },
-
-    // стани hover / focus / active
-    { pattern: new RegExp(`^(hover|focus|active):${prefix}[a-z0-9_/:-]+`) },
-
-    // dark:
-    { pattern: new RegExp(`^dark:${prefix}[a-z0-9_/:-]+`) },
+    { pattern: new RegExp(`^${prefix}[\\w\\/:.-]+`) },
+    { pattern: new RegExp(`^(sm|md|lg|xl|2xl):${prefix}[\\w\\/:.-]+`) },
+    { pattern: new RegExp(`^(hover|focus|active):${prefix}[\\w\\/:.-]+`) },
+    { pattern: new RegExp(`^dark:${prefix}[\\w\\/:.-]+`) },
   ],
 };
