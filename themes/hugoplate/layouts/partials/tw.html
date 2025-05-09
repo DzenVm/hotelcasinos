@@ -1,8 +1,10 @@
-{{/* Виклик: class="{{ partial "tw" "bg-primary p-4" }}" */}}
+{{/* layouts/partials/tw.html
+     Виклик: class="{{ partial "tw" "bg-primary p-4 lg:flex" }}" */}}
 
-{{- $prefix := site.Params.twPrefix | default "" -}}
-{{- $out := slice -}}
-{{- range (split . " ") }}
-  {{- $out = $out | append (print $prefix .) -}}
-{{- end -}}
-{{ delimit $out " " -}}
+     {{- $prefix := site.Params.twPrefix | default (getenv "TW_PREFIX") | default "" -}}
+     {{- $out := slice -}}
+     {{- range (split . " ") -}}
+       {{- $out = $out | append (print $prefix .) -}}
+     {{- end -}}
+     {{- delimit $out " " -}}
+     
