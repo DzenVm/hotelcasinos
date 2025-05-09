@@ -1,15 +1,14 @@
-{{/* data/home/gallery.yml: - "/images/ugc/1.jpg" … */}}
-
+{{ $imgs := .Site.Data.home.gallery }}
+{{ with $imgs }}
 <section>
-    <h2 class="text-2xl font-semibold mb-8 text-center">Photo Mosaic</h2>
-  
-    <div class="columns-2 md:columns-3 gap-2 space-y-2">
-      {{ range first 6 (shuffle .Site.Data.home.gallery) }}
-        <img src="{{ . | relURL }}"
-             alt="Guest snapshot"
-             loading="lazy"
-             class="w-full rounded-lg shadow-sm hover:shadow-md transition">
-      {{ end }}
-    </div>
-  </section>
-  
+  <h2 class="text-2xl font-semibold mb-8 text-center">Photo Mosaic</h2>
+
+  <div class="columns-2 md:columns-3 gap-2 space-y-2">
+    {{ range first 6 (shuffle $imgs) }}
+      <img src="{{ . | relURL }}" alt="Guest snapshot"
+           loading="lazy"
+           class="w-full rounded-lg shadow-sm hover:shadow-md transition">
+    {{ end }}
+  </div>
+</section>
+{{ end }}
