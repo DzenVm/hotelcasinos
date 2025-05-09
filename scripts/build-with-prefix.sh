@@ -9,10 +9,11 @@ export HUGO_TW_PREFIX="$prefix"
 
 # === CSS збірка через новий CLI ===
 npx @tailwindcss/cli \
-  --config ./tailwind.config.js \
+  --config ./tailwind.config.cjs \
   -i themes/hugoplate/assets/css/main.css \
   -o static/css/tailwind.css \
   --minify
+
 
 # === решта (Hugo) ===
 hugo --minify
